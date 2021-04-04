@@ -1,72 +1,72 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var specialCharacters = " !&(%)*+,$-./:;<=>?@[]^_`{|}~# ";
-var alphabetCharsLower = "abcdefghijklmnopqrstuvwxyz";
-var alphabetCharsUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbersChars = "1234567890";
-var passlength = [8,9,10,11,12,13,14];// has to be between 8 to 128 
-
-function generatePassword(){
-    alert("lets create a password")
-    var passLength = prompt("password legth between 8 and 14");
-    console.log(passLength);
-    var upperConfirm = confirm("will this use uppercase letters?");
-    console.log(upperConfirm);
-    var lowerConfirm = confirm("Will this use lowercase letters?");
-    console.log(lowerConfirm);
-    var specialConfirm = confirm("Will this use special characters?");
-    console.log(specialConfirm);
-    var numConfirm = confirm("Will this have numbers?");
-    console.log(numConfirm);
-    var randomPass = [upperConfirm, lowerConfirm, specialConfirm, numConfirm]
-    if (passLength === true,upperConfirm ===true,lowerConfirm === true, specialConfirm === true, numConfirm === true){
-        for (var i = 0; i < randomPass.length; i++) { 
-            console.log("what comes up?")
-    }
-
-}
 
 
+function generatePassword(){ 
+// var for the characters
+var specialCharacters = ["!","&","(","%",")","*","+",",","$","-",".","/","<",":",";","=",">","?","@","[","]","^","_","`","{","|","}","~","#"];
+var alphabetCharsLower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var alphabetCharsUpper = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var numbersChars = ["1","2","3","4","5","6","7","8","9","0"];
 
+var passContent= [];
+    // promt asking the amount of characters wanted
+    var passLength = window.prompt("password legth between 8 and 128");
+    
+    //the requied imput check
+    if(passLength >= 8 && passLength <= 128){
+        var upperConfirm = confirm("will this use uppercase letters?");
+        var lowerConfirm = confirm("Will this use lowercase letters?");
+        var specConfirm = confirm("Will this use special characters?");
+        var numConfirm = confirm("Will this have numbers?");
+             
+        //making the items random based on the index
+        var specChars = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
+        var lowChars = alphabetCharsLower[Math.floor(Math.random()*alphabetCharsLower.length)];
+        var upperChars = alphabetCharsUpper[Math.floor(Math.random()*alphabetCharsUpper.length)];
+        var numChars = numbersChars[Math.floor(Math.random()*numbersChars.length)];
+        // tried tomke a array to randomly pull from to not make it repetitive
+        var allChars = [];
+        allChars.push(specChars, lowChars, upperChars, numChars);
+        console.log(allChars);
+        //below is teting area
+        
+        //for loop to make the function repeat until it is the length requested
+        for (var i=0; i <= passLength.length; i++){
+          if (upperConfirm === true){
+              console.log(upperChars);
+              passContent.push(upperChars);
+          }
+          if (lowerConfirm === true){
+              console.log(lowChars);
+              passContent.push(lowChars);
+        
+          }
+          if (specConfirm === true){
+              console.log(specChars);
+              passContent.push(specChars);
+          }
+          if (numConfirm === true){
+              console.log(numChars);
+              passContent.push(numChars);
+          }
+          
+        } 
 
-
-
-
-
-
-
-
-/*function generatePassword(){ 
-    var randomPass = function() {
-        var passLength = prompt("password legth between 8 and 14");
-        if(passLength >= 8 && passLength <= 14){
-            console.log("working so far")
-            if(confirm("will this use uppercase letters?")=== true){
-                console.log("will use  upper case chars")
-            };
-            if (confirm("Will this use lowercase letters?")=== true){
-                console.log("will have lower case")
-            };
-            if (confirm("Will this use special characters?")=== true){
-                console.log("will have special chars")
-            };
-            if (confirm("Will this have numbers?")=== true){
-                console.log("will have numbers")
-    }
-            }
-
-        return randomPass;  
-    }
+        //above is testing area
+        } 
+          //gets rid of the "," to join it together
+          var finalPass = passContent.join('');
+    // will return the value of final pass    
+    return finalPass;
     
 };
-*/
 
 
 
 
 // Write password to the #password input
 function writePassword() {
-  //
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
